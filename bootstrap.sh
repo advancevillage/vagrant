@@ -23,7 +23,7 @@ sudo apt-get install -y apt-transport-https ca-certificates curl software-proper
 (
 cat << EOF
 deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
-deb-src [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+# deb-src [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
 EOF
 ) > /etc/apt/sources.list.d/docker.list
 
