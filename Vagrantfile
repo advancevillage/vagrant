@@ -9,18 +9,9 @@
 # you're doing.
 Vagrant.configure("2") do |config|
   # 基础Box配置
-  config.vm.box = "centos/7"
-  config.vm.box_url = "F:"
-  config.vm.box_url += "/vagrant/box/centos-7-x86_64.virtualbox.box"
-  
-  config.ssh.username = "node"
-  config.ssh.password = "passw0rd"
-    
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
-  
+  config.vm.box = "base"
+  config.vm.box_check_update = false
+
   # 配置虚拟机的网络类型:  端口转发，公有网络，还有私有网络。
   # 端口转发  
   config.vm.network "forwarded_port", guest: 22, host: 2100, auto_correct: true
@@ -31,27 +22,28 @@ Vagrant.configure("2") do |config|
   # config.vm.network "public_network"
   # 1) en1: Wi-Fi (AirPort)
   # 2) en0: 以太网 
-  config.vm.network "public_network", bridge: "en1: Wi-Fi (AirPort)", ip: "192.168.1.181"
+  config.vm.network "public_network", bridge: "en1: Wi-Fi (AirPort)", ip: "192.168.1.182"
+    
+  # 虚拟机[VirtualBox]配置
+  config.vm.provider "virtualbox" do |vb|
+     # 是否显示启动时的可视化窗口
+     vb.gui = false
+     # 虚拟机机器的名字
+     vb.name = "devubuntu"
+     # 内存大小
+     vb.memory = "8192"
+     # CPU
+     vb.cpus = 2
+  end
+  
+  #配置系统基础环境
+  config.vm.provision "shell", path: "bootstrap.sh"
     
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-
-  # 虚拟机[VirtualBox]配置
-  config.vm.provider "virtualbox" do |vb|
-     # 是否显示启动时的可视化窗口
-     vb.gui = false
-     # 虚拟机机器的名字
-     vb.name = "kelly"
-     # 内存大小
-     vb.memory = "4096"
-     # CPU
-     vb.cpus = 2
-  end
-  
-  # 配置初始化启动
 
   #
   # View the documentation for the provider you are using for more
