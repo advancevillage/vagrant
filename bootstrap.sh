@@ -20,8 +20,6 @@ EOF
 
 #添加docker的软件源
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
 (
 cat << EOF
 deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
