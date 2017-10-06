@@ -19,11 +19,13 @@ EOF
 ) > /etc/apt/sources.list
 
 #添加docker的软件源
+#官方源: https://download.docker.com/linux/ubuntu
+#国内源: https://mirrors.aliyun.com/docker-ce/linux/ubuntu
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 (
 cat << EOF
-deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
-# deb-src [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial stable
+
 EOF
 ) > /etc/apt/sources.list.d/docker.list
 
